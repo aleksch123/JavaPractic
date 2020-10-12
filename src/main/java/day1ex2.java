@@ -1,13 +1,16 @@
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
+
 import static com.jayway.jsonpath.JsonPath.read;
 
 public class day1ex2 {
@@ -25,7 +28,7 @@ public class day1ex2 {
     public static LocalTime getTimeViaApi() throws IOException {
 
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm");
-        CloseableHttpClient httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
+        HttpClient httpClient = HttpClients.createDefault();
         HttpGet get = new HttpGet("http://worldtimeapi.org/api/timezone/Europe/Moscow");
         HttpResponse response = httpClient.execute(get);
         String json = EntityUtils.toString(response.getEntity());
