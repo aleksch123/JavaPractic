@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName="Reader"
+
+
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+
+    compile 'org.seleniumhq.selenium:selenium-java:3.4.0'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile 'com.jayway.jsonpath:json-path:2.2.0'
+
+
+
+}
+
+
