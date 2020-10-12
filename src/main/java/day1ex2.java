@@ -23,9 +23,9 @@ public class day1ex2 {
 
 
     public static LocalTime getTimeViaApi() throws IOException {
+
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm");
-        CloseableHttpClient httpClient;
-        httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
+        CloseableHttpClient httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
         HttpGet get = new HttpGet("http://worldtimeapi.org/api/timezone/Europe/Moscow");
         HttpResponse response = httpClient.execute(get);
         String json = EntityUtils.toString(response.getEntity());
