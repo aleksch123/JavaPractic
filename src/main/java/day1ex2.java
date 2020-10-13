@@ -26,20 +26,16 @@ public class day1ex2 {
     }
 
 
-    public static int getTimeViaApi() throws IOException, ParseException {
+    public static LocalTime getTimeViaApi() throws IOException {
 
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm");
-        HttpClient httpClient = HttpClients.createDefault();
+        HttpClient httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
         HttpGet get = new HttpGet("http://worldtimeapi.org/api/timezone/Europe/Moscow");
         HttpResponse response = httpClient.execute(get);
         String json = EntityUtils.toString(response.getEntity());
-        String dateTime = read(json, "$.datetime");
-        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX");
-        Date date = parser.parse(dateTime);
-        SimpleDateFormat formatter = new SimpleDateFormat("HH");
-
-        return Integer.parseInt(formatter.format(date));
-
+        int unixTime = read(json, "$.unixtime");
+        Date time = new Date((long) unixTime * 1000);
+        return LocalTime.parse(formatForDateNow.format(time));
     }
 
 
