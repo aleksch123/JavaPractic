@@ -15,14 +15,14 @@ public class Day3ex2 {
 
     }
 
-    public static String repeatFinder(String sourse,int repeat){
+    public static String repeatFinder(String sourseText,int maxFrequency){
         JSONObject json = new JSONObject();
-        String formattedText =sourse.toLowerCase().replaceAll("^a-яa-z-","").replaceAll("\\.","");
+        String formattedText =sourseText.toLowerCase().replaceAll("^a-яa-z-","").replaceAll("\\.","");
         List<String> words = Arrays.asList(formattedText.split(" "));
         for (String word:words)
         {
             int frequency = Collections.frequency(words,word);
-            if (frequency>=repeat) {
+            if (frequency>=maxFrequency) {
                 json.put(word,frequency);
             }
         }
