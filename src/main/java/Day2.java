@@ -11,7 +11,7 @@ public class Day2 {
         String text="Не забывайте о том, что все великие волшебники в истории в свое время были такими же, как мы, – школьниками. Если у них получилось, то получится и у нас», – Гарри Поттер.";
         List<String> forbiddenWords = new ArrayList<>();
         forbiddenWords.add("волшебники");
-        forbiddenWords.add("Гарри Потер");
+        forbiddenWords.add("Гарри Поттер");
 
         System.out.println(advancedTextAnalyzer(text,35,forbiddenWords));
     }
@@ -48,6 +48,8 @@ public class Day2 {
         json.put("pure_text",pureText);
         json.put("pure_short_text",cutText);
 
+
      return String.valueOf(json);
     }
+
 }
