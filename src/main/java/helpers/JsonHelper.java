@@ -85,21 +85,6 @@ public class JsonHelper {
         return users;
     }
 
-    private String getJsonFromFile(String path) {
-        String line = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File(path)))) {
-            line = reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return line;
-
-    }
-
-
     public List<String> getInvalidUsers() {
         List<String> users = new ArrayList<>();
         for (int i = 0; i < jsonSize; i++) {
@@ -119,6 +104,20 @@ public class JsonHelper {
         }
 
         return users;
+    }
+
+    private String getJsonFromFile(String path) {
+        String line = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(path)))) {
+            line = reader.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return line;
+
     }
 }
 
