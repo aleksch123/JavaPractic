@@ -83,8 +83,9 @@ public class JsonHelper {
 
     public List<String> getUserListByInt(String fieldName,int target,String condition) {
         List<String> users = new ArrayList<>();
-        Boolean add=false;
+
         for (int i = 0; i < jsonSize; i++) {
+            Boolean add=false;
             int result = read(json, "$.[" + i + "]."+fieldName);
             switch (condition) {
                 case ">":
@@ -104,7 +105,6 @@ public class JsonHelper {
 
     public List<String> getUserListByBoolean(String fieldName,Boolean condition) {
         List<String> users = new ArrayList<>();
-        Boolean add=false;
         for (int i = 0; i < jsonSize; i++) {
             Boolean result = read(json, "$.[" + i + "]."+fieldName);
             if (condition.equals(result)) users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
