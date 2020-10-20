@@ -36,52 +36,27 @@ public class JsonHelper {
     }
 
     public List<String> getUsersOlderThen(int target) {
-        List<String> users = new ArrayList<>();
-        for (int i = 0; i < jsonSize; i++) {
-            int age = read(json, "$.[" + i + "].age");
-            if (age > target)
-                users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
-        }
+        List<String> users = getUserListByInt("age",target,">");
         return users;
     }
 
     public List<String> getUsersYoungerThen(int target) {
-        List<String> users = new ArrayList<>();
-        for (int i = 0; i < jsonSize; i++) {
-            int age = read(json, "$.[" + i + "].age");
-            if (age < target)
-                users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
-        }
+        List<String> users = getUserListByInt("age",target,"<");
         return users;
     }
 
     public List<String> getUsersAgeIs(int target) {
-        List<String> users = new ArrayList<>();
-        for (int i = 0; i < jsonSize; i++) {
-            int age = read(json, "$.[" + i + "].age");
-            if (age == target)
-                users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
-        }
+        List<String> users = getUserListByInt("age",target,"=");
         return users;
     }
 
     public List<String> getAdultUsers() {
-        List<String> users = new ArrayList<>();
-        for (int i = 0; i < jsonSize; i++) {
-            Boolean isteen = read(json, "$.[" + i + "].is_teen");
-            if (!isteen)
-                users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
-        }
+        List<String> users = getUserListByBoolean("is_teen",false);
         return users;
     }
 
     public List<String> getTeenUsers() {
-        List<String> users = new ArrayList<>();
-        for (int i = 0; i < jsonSize; i++) {
-            Boolean isteen = read(json, "$.[" + i + "].is_teen");
-            if (isteen)
-                users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
-        }
+        List<String> users = getUserListByBoolean("is_teen",true);
         return users;
     }
 
@@ -105,6 +80,39 @@ public class JsonHelper {
 
         return users;
     }
+
+    public List<String> getUserListByInt(String fieldName,int target,String condition) {
+        List<String> users = new ArrayList<>();
+        Boolean add=false;
+        for (int i = 0; i < jsonSize; i++) {
+            int result = read(json, "$.[" + i + "]."+fieldName);
+            switch (condition) {
+                case ">":
+                    if (result > target)add=true;
+                    break;
+                case "<":
+                    if (result < target)add=true;
+                    break;
+                case "=":
+                    if (result == target)add=true;
+                    break;
+            }
+            if (add) users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
+        }
+        return users;
+    }
+
+    public List<String> getUserListByBoolean(String fieldName,Boolean condition) {
+        List<String> users = new ArrayList<>();
+        Boolean add=false;
+        for (int i = 0; i < jsonSize; i++) {
+            Boolean result = read(json, "$.[" + i + "]."+fieldName);
+            if (condition.equals(result)) users.add(read(json, "$.[" + i + "].name").toString() + " " + read(json, "$.[" + i + "].fname").toString());
+        }
+        return users;
+    }
+
+
 
     private String getJsonFromFile(String path) {
         String line = null;
