@@ -1,6 +1,8 @@
 package helpers;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import static com.jayway.jsonpath.JsonPath.read;
@@ -11,8 +13,8 @@ public class JsonHelper {
     Map<String, Integer> rules = new HashMap<>();
 
 
-    public JsonHelper() {
-        json = getJsonFromFile("src/main/resources/users.json");
+    public JsonHelper() throws IOException {
+        json =  String.valueOf(Files.readAllLines(Paths.get("src/main/resources/users.json")));
         List<String> id = read(json, "$.[*].id");
         jsonSize = id.size();
         rules.put("Russia", 18);
@@ -75,7 +77,6 @@ public class JsonHelper {
                     }
                 }
             }
-
         }
 
         return users;
@@ -113,19 +114,5 @@ public class JsonHelper {
     }
 
 
-
-    private String getJsonFromFile(String path) {
-        String line = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File(path)))) {
-            line = reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return line;
-
-    }
 }
 
