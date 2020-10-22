@@ -3,7 +3,7 @@ public class BinaryConverter {
     public static void main(String[] args) throws Exception {
 
 
-            System.out.println(convertToBinary(10));
+            System.out.println(convertToBinary(16));
 
 
 
@@ -11,12 +11,12 @@ public class BinaryConverter {
 
     private static String convertToBinary(int decimal) {
         String binary = "";
-        while (decimal > 0) {
-            if (decimal % 2 == 0) binary = binary + "0";
-            else binary = binary + "1";
+        do {
+            if (decimal % 2 == 0) binary = "0"+binary;
+            else binary = binary = "1"+binary;
             decimal = decimal / 2;
-        }
-        return binary+"0";
+        }while (decimal!=0);
+        return binary;
     }
 
 }
