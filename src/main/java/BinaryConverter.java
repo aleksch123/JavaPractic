@@ -11,7 +11,7 @@ public class BinaryConverter {
     }
 
     private static String convertToBinary(int decimal) {
-        String binary = "";
+        String binary = "0";
         while (decimal > 0) {
             if (decimal % 2 == 0) binary = binary + "0";
             else binary = binary + "1";
