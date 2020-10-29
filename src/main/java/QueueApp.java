@@ -1,29 +1,35 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class QueueApp {
 
-    private java.util.Deque queue;
+    private List<Integer> queue;
 
 
     public QueueApp() {
 
-        queue = new ArrayDeque<>();
+        queue = new ArrayList<>();
     }
 
     public void addToQueue(int value) {
 
-        queue.addFirst(value);
+        queue.add(value);
     }
 
     public int getFirst() {
 
-        return (int) queue.pollLast();
+        int value=queue.get(0);
+        queue.remove(0);
+        return value;
     }
 
     public int getLast() {
+        int value=queue.get(queue.size()-1);
+        queue.remove(queue.size()-1);
 
-        return (int) queue.pollFirst();
+        return value;
     }
 
 
