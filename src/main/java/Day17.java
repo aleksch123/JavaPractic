@@ -10,18 +10,18 @@ public class Day17 {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(convertNum(1000000000));
+        System.out.println(convertNum(10000));
     }
 
     private static String convertNum(int value) {
         String result = "";
-
+        if (value!=0){
         if (value / 1000000 > 0) result = result + convertNumToStr(value / 1000000, "million");
         value = value - value / 1000000 * 1000000;
         if (value / 1000 > 0) result = result + convertNumToStr(value / 1000, "thousand");
         value = value - value / 1000 * 1000;
-        if (value > 0) result = result + convertNumToStr(value, "hundred");
-        else if(value==0){result="ноль";}
+        if (value > 0) result = result + convertNumToStr(value, "hundred");}
+        else{result="ноль";}
         String capResult = result.substring(0, 1).toUpperCase() + result.substring(1).toLowerCase();
         return capResult;
     }
