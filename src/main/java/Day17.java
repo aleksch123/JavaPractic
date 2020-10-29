@@ -10,7 +10,7 @@ public class Day17 {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(convertNum(1102232));
+        System.out.println(convertNum(1001001));
     }
 
     private static String convertNum(int value) {
@@ -20,6 +20,8 @@ public class Day17 {
         if (value / 1000000 > 0) result += convertNumToStr(value / 1000000, "million");
         value -= value / 1000000 * 1000000;
         if (value / 1000 > 0) result = result + convertNumToStr(value / 1000, "thousand");
+        if (result.equals(" тысяча ")){
+            result="Одна"+result;}
         value -= value / 1000 * 1000;
         if (value > 0) result += convertNumToStr(value, "hundred");}
         else{result="ноль";}
@@ -65,7 +67,7 @@ public class Day17 {
                 if ((range == "million") || (range == "hundred")) {
                     unitWord = "один";
                 } else {
-                    unitWord = "одна";
+                   if(hundredsNum!=0&&decimalNum!=0) unitWord = "одна";
                 }
             }
         }
