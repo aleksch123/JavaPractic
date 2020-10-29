@@ -10,7 +10,7 @@ public class Day17 {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(convertNum(1001001));
+        System.out.println(convertNum(13000000));
     }
 
     private static String convertNum(int value) {
@@ -43,6 +43,7 @@ public class Day17 {
         hundredWords = Arrays.asList(hundredsStr.split(" "));
         decimalWords = Arrays.asList(decimalscStr.split(" "));
         unitWords = Arrays.asList(unitsStr.split(" "));
+        int unitNum=0;
         int hundredsNum = num / 100;
         if (hundredsNum > 0) {
             result+=hundredWords.get(hundredsNum - 1)+" ";
@@ -53,7 +54,11 @@ public class Day17 {
         } else if (decimalNum == 1) {
             result+= unitWords.get((num - hundredsNum * 100) - 1);
         }
-        int unitNum = num - hundredsNum * 100 - decimalNum * 10;
+        if (decimalNum>1){
+         unitNum = num - hundredsNum * 100 - decimalNum * 10;}
+        else{
+            unitNum = num - hundredsNum * 100;
+        }
         if ((decimalNum != 1) && (unitNum != 0)) {
             if (unitNum > 2) {
                 unitWord = unitWords.get((num - hundredsNum * 100 - decimalNum * 10) - 1);
