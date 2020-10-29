@@ -10,29 +10,31 @@ public class Day17 {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(convertNum(10000));
+        System.out.println(convertNum(1102232));
     }
 
     private static String convertNum(int value) {
+
         String result = "";
         if (value!=0){
-        if (value / 1000000 > 0) result = result + convertNumToStr(value / 1000000, "million");
-        value = value - value / 1000000 * 1000000;
+        if (value / 1000000 > 0) result += convertNumToStr(value / 1000000, "million");
+        value -= value / 1000000 * 1000000;
         if (value / 1000 > 0) result = result + convertNumToStr(value / 1000, "thousand");
-        value = value - value / 1000 * 1000;
-        if (value > 0) result = result + convertNumToStr(value, "hundred");}
+        value -= value / 1000 * 1000;
+        if (value > 0) result += convertNumToStr(value, "hundred");}
         else{result="ноль";}
         String capResult = result.substring(0, 1).toUpperCase() + result.substring(1).toLowerCase();
         return capResult;
     }
 
     public static String convertNumToStr(int num, String range) {
-        String millionTail = "миллион";
-        String thousandTail = "тысяч";
+        String millionTail = " миллион";
+        String thousandTail = " тысяч";
         String tailWord = "";
         String hundredsWord = "";
         String decimalWord = "";
         String unitWord = "";
+        String result="";
         List<String> hundredWords;
         List<String> decimalWords;
         List<String> unitWords;
@@ -41,19 +43,25 @@ public class Day17 {
         unitWords = Arrays.asList(unitsStr.split(" "));
         int hundredsNum = num / 100;
         if (hundredsNum > 0) {
-            hundredsWord = hundredWords.get(hundredsNum - 1);
+            result+=hundredWords.get(hundredsNum - 1)+" ";
         }
         int decimalNum = (num - hundredsNum * 100) / 10;
         if (decimalNum > 1) {
-            decimalWord = decimalWords.get(decimalNum - 2);
+            result+=decimalWords.get(decimalNum - 2)+" ";
         } else if (decimalNum == 1) {
-            decimalWord = unitWords.get((num - hundredsNum * 100) - 1);
+            result+= unitWords.get((num - hundredsNum * 100) - 1);
         }
         int unitNum = num - hundredsNum * 100 - decimalNum * 10;
         if ((decimalNum != 1) && (unitNum != 0)) {
-            if (unitNum > 1) {
+            if (unitNum > 2) {
                 unitWord = unitWords.get((num - hundredsNum * 100 - decimalNum * 10) - 1);
-            } else {
+            }else if(unitNum==2){
+                if ((range == "million") || (range == "hundred")) {
+                    unitWord = "два";
+                } else {
+                    unitWord = "две";
+                }
+            }else {
                 if ((range == "million") || (range == "hundred")) {
                     unitWord = "один";
                 } else {
@@ -87,7 +95,7 @@ public class Day17 {
         }
 
 
-        return hundredsWord + " " + decimalWord + " " + unitWord + " " + tailWord + " ";
+        return result+unitWord+tailWord+" ";
     }
 
 }
