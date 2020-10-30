@@ -34,11 +34,11 @@ public class Day17 {
         } else {
             result = "ноль";
         }
-        if (lastChar == 0 || lastChar > 4) catTail = " котиков";
-        else if (lastChar == 1) catTail = " котик";
-        else if (lastChar > 1 && lastChar < 4) catTail = " котика";
+        if (lastChar == 0 || lastChar > 4) catTail = "котиков";
+        else if (lastChar == 1) catTail = "котик";
+        else if (lastChar > 1 && lastChar < 4) catTail = "котика";
         String capResult = result.substring(0, 1).toUpperCase() + result.substring(1).toLowerCase() + catTail;
-        return capResult;
+        return capResult.trim();
     }
 
     public static String convertNumToStr(int num, String range) {
