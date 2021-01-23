@@ -27,6 +27,7 @@ public class day1ex1 {
         if ((now.isAfter(startMorning) && now.isBefore(endMorning))||now.equals(startMorning)||now.equals(endMorning)) System.out.println("Доброе утро, "+userName);
         if ((now.isAfter(startDay) && now.isBefore(endDay))||now.equals(startDay)||now.equals(endDay)) System.out.println("Добрый день, "+userName);
         if ((now.isAfter(startEvening) && now.isBefore(endEvening))||now.equals(startEvening)||now.equals(endEvening)) System.out.println("Добрый вечер, "+userName);
+        gfgfgffg
 
 
     }
