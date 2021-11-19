@@ -1,4 +1,4 @@
-package Casting;
+package casting;
 
  class Noobs {
     public void m(int a){

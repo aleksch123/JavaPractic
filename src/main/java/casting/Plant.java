@@ -1,4 +1,4 @@
-package Casting;
+package casting;
 
 public class Plant {
     public void run(){ System.out.println("Plant"); }

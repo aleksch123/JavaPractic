@@ -8,6 +8,12 @@ repositories {
     mavenCentral()
 }
 
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'windows-1251'
+}
+
 dependencies {
 
     compile 'org.seleniumhq.selenium:selenium-java:3.4.0'

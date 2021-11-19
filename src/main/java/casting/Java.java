@@ -1,4 +1,4 @@
-package Casting;
+package casting;
 
     public class Java extends Coffee {
         public void run(){ System.out.println("Java"); }

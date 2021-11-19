@@ -1,8 +1,9 @@
-package factory;
+package pattern.factory;
 
 public class JavaDeveloper implements Developer{
+
     @Override
     public void wrightCode() {
-        System.out.println("Developer wrights Java code..");
+        System.out.println("Developer wrights java code...");
     }
 }

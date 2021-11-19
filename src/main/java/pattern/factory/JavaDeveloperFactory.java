@@ -1,4 +1,4 @@
-package factory;
+package pattern.factory;
 
 public class JavaDeveloperFactory implements DeveloperFactory{
     @Override
